@@ -8,7 +8,11 @@ public class Dish {
     private List<Ingredient> ingredients;
 
     public Double getDishPrice() {
-        throw new RuntimeException("Not implemented");
+        double totalPrice = 0;
+        for (int i = 0; i < ingredients.size(); i++) {
+            totalPrice = totalPrice + ingredients.get(i).getPrice();
+        }
+        return totalPrice;
     }
 
     public Dish() {
