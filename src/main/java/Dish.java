@@ -23,7 +23,7 @@ public class Dish {
         for (Ingredient ingredient : ingredients) {
             Double quantity = ingredient.getQuantity();
             if (quantity == null) {
-                quantity = 0.0; 
+                quantity = 0.0;
                 throw new RuntimeException("Quantity required is null for ingredient: " + ingredient.getName());
             }
             totalCost += (ingredient.getPrice() != null ? ingredient.getPrice() : 0.0) * quantity;
@@ -40,7 +40,6 @@ public class Dish {
         this.dishType = dishType;
         this.ingredients = ingredients;
     }
-
 
     public Integer getId() {
         return id;
@@ -83,9 +82,11 @@ public class Dish {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Dish dish = (Dish) o;
-        return Objects.equals(id, dish.id) && Objects.equals(name, dish.name) && dishType == dish.dishType && Objects.equals(ingredients, dish.ingredients);
+        return Objects.equals(id, dish.id) && Objects.equals(name, dish.name) && dishType == dish.dishType
+                && Objects.equals(ingredients, dish.ingredients);
     }
 
     @Override
@@ -106,7 +107,7 @@ public class Dish {
 
     public Double getGrossMargin() {
         if (price == null) {
-            throw new RuntimeException("Price is null");
+            throw new RuntimeException("Selling price is null for dish: " + name);
         }
         return price - getDishCost();
     }
