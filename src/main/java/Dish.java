@@ -17,15 +17,18 @@ public class Dish {
     }
 
     public Double getDishCost() {
-        double totalPrice = 0;
-        for (int i = 0; i < ingredients.size(); i++) {
-            Double quantity = ingredients.get(i).getQuantity();
-            if(quantity == null) {
-                throw new RuntimeException("...");
+        if (ingredients == null || ingredients.isEmpty())
+            return 0.0;
+        double totalCost = 0.0;
+        for (Ingredient ingredient : ingredients) {
+            Double quantity = ingredient.getQuantity();
+            if (quantity == null) {
+                quantity = 0.0; 
+                throw new RuntimeException("Quantity required is null for ingredient: " + ingredient.getName());
             }
-            totalPrice = totalPrice + ingredients.get(i).getPrice() * quantity;
+            totalCost += (ingredient.getPrice() != null ? ingredient.getPrice() : 0.0) * quantity;
         }
-        return totalPrice;
+        return totalCost;
     }
 
     public Dish() {
